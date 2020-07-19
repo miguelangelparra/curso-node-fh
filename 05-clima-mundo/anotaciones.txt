@@ -1,0 +1,1 @@
+https://rapidapi.com/dev132/api/city-geo-location-lookup

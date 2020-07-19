@@ -1,0 +1,19 @@
+{
+  "name": "05-clima-mundo",
+  "version": "1.0.0",
+  "description": "Aplicacion del clima",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "javascript"
+  ],
+  "author": "Miguelangel P",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "yargs": "^15.4.1"
+  }
+}
