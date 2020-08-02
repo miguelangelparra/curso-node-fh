@@ -3,6 +3,8 @@ require("./config/config");
 const express = require("express");
 //Importa mongoose para gestionar la base de datos
 const mongoose = require("mongoose");
+//Es una libreria propia de node que ayuda a resolver los path
+const path = require("path");
 
 //Declara una instancia de Express, la cual será nuestro servidor
 const app = express();
@@ -15,14 +17,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //Rutas:
-//Importa un enrutador definido en otro archivo
-app.use(require("./routes/usuarios.routes.js"));
+//Habilitar la carpeta public para que pueda ser accedida por cualquiera 
+//Es necesario utilizar el path.resolve ya que la carpeta esta afuera
+app.use(express.static(path.resolve(__dirname, "../public")));
+
+//Importa un enrutador global de rutas 
+app.use(require("./routes/index.routes.js"));
 
 //Realiza la conexion a la base de datos [protocolo]://[ruta]:[puerto]/[base de datos]
 mongoose
   .connect(process.env.URLDB, {
     useNewUrlParser: true,
-    useCreateIndex:true,
+    useCreateIndex: true,
     useUnifiedTopology: true,
   })
   .then((res) => {

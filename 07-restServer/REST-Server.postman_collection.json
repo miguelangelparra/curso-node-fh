@@ -15,12 +15,12 @@
 					"urlencoded": [
 						{
 							"key": "nombre",
-							"value": "test17",
+							"value": "test01",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "test17@miguelangel.com",
+							"value": "test01@miguelangel.com",
 							"type": "text"
 						},
 						{
@@ -54,13 +54,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/usuario/5f1e148d4e099b5a8c82d564",
+					"raw": "{{url}}/usuario/5f1e0645275ea638fc0c18e0",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"usuario",
-						"5f1e148d4e099b5a8c82d564"
+						"5f1e0645275ea638fc0c18e0"
 					]
 				}
 			},
@@ -101,12 +101,49 @@
 		},
 		{
 			"name": "usuario:Obtener usuarios",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d1d7e594-5a8b-47b2-aa57-d4ef020aaf58",
+						"exec": [
+							"console.log(\"Hola Mundo0\")\r",
+							"\r",
+							"let resp = pm.response.json()\r",
+							"if (resp.ok) {\r",
+							"    let token = resp.token\r",
+							"    pm.environment.set(\"token\", token)\r",
+							"} else {\r",
+							"    console.log(\"No se actualizo el token \")\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "91952bfb-6845-4f28-83f3-2a0048a1cd79",
+						"exec": [
+							"console.log(\"Hola Mundo\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7InJvbGUiOiJBRE1JTl9ST0xFIiwiZXN0YWRvIjp0cnVlLCJnb29nbGUiOmZhbHNlLCJfaWQiOiI1ZjFlMDVkYzI3NWVhNjM4ZmMwYzE4ZDEiLCJub21icmUiOiJ0ZXN0MDEiLCJlbWFpbCI6InRlc3QwMUBtaWd1ZWxhbmdlbC5jb20iLCJfX3YiOjB9LCJpYXQiOjE1OTU4OTk0NzEsImV4cCI6MTU5NTk4NTg3MX0.zPkexBtnBfJwnjf1cU7hTbnaiTnrPljyts4_93Otc0Q",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
@@ -123,7 +160,7 @@
 					]
 				},
 				"url": {
-					"raw": "{{url}}/usuario/?desde=5&limite=15",
+					"raw": "{{url}}/usuario/?desde=0&limite=15",
 					"host": [
 						"{{url}}"
 					],
@@ -134,12 +171,110 @@
 					"query": [
 						{
 							"key": "desde",
-							"value": "5"
+							"value": "0"
 						},
 						{
 							"key": "limite",
 							"value": "15"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login:Normal",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "14e9968c-d202-4fcd-ae42-99728a141332",
+						"exec": [
+							"let resp = pm.response.json();\r",
+							"\r",
+							"if(resp.ok){\r",
+							"    let token =resp.token;\r",
+							"    pm.environment.set(\"token\",token);\r",
+							"    console.log(\"Se actualizo el token \")\r",
+							"}else{\r",
+							"    console.log(\"no se actualizo el token \")\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "test01@miguelangel.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginGoogle",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a39601d-f09b-4b55-97f2-0ee68bf21f83",
+						"exec": [
+							"let resp = pm.response.json();\r",
+							"\r",
+							"if(resp.ok){\r",
+							"    let token =resp.token;\r",
+							"    pm.environment.set(\"token\",token);\r",
+							"}else{\r",
+							"    console.log(\"no se actualizo el token \")\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "idtoken",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImYwNTQxNWIxM2FjYjk1OTBmNzBkZjg2Mjc2NWM2NTVmNWE3YTAxOWUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNzk4NDQxMTM5NTktcGg0NjVucG81Z29rOHNtMjc2M3I5cG05MWlrc2ozMmEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI3OTg0NDExMzk1OS1waDQ2NW5wbzVnb2s4c20yNzYzcjlwbTkxaWtzajMyYS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjEwMzc2OTQ4Mjk1NDIwNTU1OTA5NyIsImVtYWlsIjoibWlndWVsYW5nZWwubWlncHNpQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoibkhQa2tpVjRYUUduLWRQYzZ4cmNHdyIsIm5hbWUiOiJNaWd1ZWxhbmdlbCBEZSBKZXN1cyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vLVlaN0dQQnZaRjhJL0FBQUFBQUFBQUFJL0FBQUFBQUFBQUFBL0FNWnV1Y25pSnZnNVhfS1IyV2t5d21UTEhTb2VoY0tTU1Evczk2LWMvcGhvdG8uanBnIiwiZ2l2ZW5fbmFtZSI6Ik1pZ3VlbGFuZ2VsIiwiZmFtaWx5X25hbWUiOiJEZSBKZXN1cyIsImxvY2FsZSI6ImVzLTQxOSIsImlhdCI6MTU5NjM0NDMwMSwiZXhwIjoxNTk2MzQ3OTAxLCJqdGkiOiI0MGNiODVlYjg5MDg3MDRkZGZjMGVkZjhhMjc0ZmZmNmMyODAxMWQ0In0.mo9eRo5G_e8kstDWh0nN4wcjUjiIGFsFpL2DeyovbpDK6ilnXvXp8SphRqmdwPDIviKMw56B8tbtdqJnFpTYkSIKYE2sxwzQVdo8evoL8msdSW8_f4J2FjMswZNFJ0xfv_5SGCs8shFFzbznEn7QC_iUG5eJs_YXK8LI_HGTJ7LMKE_A1y0zGJ7taq9K6y9M_eK12z0qBN25GMBl8GxQvQ0O_YgbKN4Ctqe4kDl3LqAsVZzd64M-T4jMaqsa2_ioHxdRpY_6CLXgNyBl_Tl3YvtLMu3KS90p1-FROJPoz162T_1HMNZuhCH0vqntrzD-vOS7UhaiTdl7ydaWMs6Cmg",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/google",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"google"
 					]
 				}
 			},

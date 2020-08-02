@@ -1,0 +1,13 @@
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+};
+
+let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik1pZ3VlbGFuZ2VsIFBBcnJhIiwiaWF0IjoxNTE2MjM5MDIyfQ.W9OFKZ0xp0VunIVZueCuVqVLTlDECCSZtGm-9mMJ0Iw'
+undefined
+
+
+parseJwt(token)
+
+{sub: "1234567890", name: "Miguelangel PArra", iat: 1516239022}

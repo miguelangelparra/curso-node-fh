@@ -3,8 +3,19 @@ const bcrypt = require("bcrypt");
 const _ = require("underscore");
 const app = express();
 const Usuario = require("../models/usuario.model");
+const {
+  verificaToken,
+  verificaAdmin_Role,
+} = require("../middlewares/autenticacion");
 
-app.get("/usuario", function (req, res) {
+//COn Middleware de verificaicon de token
+app.get("/usuario", verificaToken, (req, res) => {
+  return res.json({
+    usuario: req.usuario,
+    nombre: req.usuario.nombre,
+    email: req.usuario.email,
+  });
+
   let desde = req.query.desde || 0;
   desde = Number(desde);
   let limite = req.query.limite || 5;
@@ -13,7 +24,7 @@ app.get("/usuario", function (req, res) {
   //Find permite buscar en el modelo de mongo, exec ejecuta el comando find,skip salta los registros, limit limita la cantidad de registros
   //El primer argumento es un objeto con las condiciones de filtrado. Sin ningun parametro no filtra
   //El segundo argumento es un string que indica los campos a devolver
-  Usuario.find({estado:true}, "nombre email role estado google img")
+  Usuario.find({ estado: true }, "nombre email role estado google img")
     .skip(desde)
     .limit(limite)
     .exec((err, usuarios) => {
@@ -23,13 +34,13 @@ app.get("/usuario", function (req, res) {
           err,
         });
       //count Cuenta los registros. el primer argumento indica la condicion, deberia ser la misma que en el find si hubiese
-      Usuario.count({estado:true}, (err, conteo) => {
+      Usuario.count({ estado: true }, (err, conteo) => {
         res.json({ ok: true, usuarios, cuantos: conteo });
       });
     });
 });
 
-app.post("/usuario", (req, res) => {
+app.post("/usuario", [verificaToken, verificaAdmin_Role], (req, res) => {
   let body = req.body;
 
   let usuario = new Usuario({
@@ -54,7 +65,7 @@ app.post("/usuario", (req, res) => {
 });
 
 //el id es un parametro dinamico
-app.put("/usuario/:id", (req, res) => {
+app.put("/usuario/:id", [verificaToken, verificaAdmin_Role], (req, res) => {
   let id = req.params.id;
   //La funcion pick de underscore permite solo sacar las propiedades indicadas de un objeto
   let body = _.pick(req.body, ["nombre", "email", "img", "role", "estado"]);
@@ -78,7 +89,7 @@ app.put("/usuario/:id", (req, res) => {
   );
 });
 
-app.delete("/usuario/:id", (req, res) => {
+app.delete("/usuario/:id", [verificaToken, verificaAdmin_Role], (req, res) => {
   let id = req.params.id;
 
   //Para borrar el registro fisicamente
