@@ -20,3 +20,14 @@ Crear el path
 studio 3t
 mongo community
 ---
+
+
+
+## TAGS
+1. git tag (Visualiza tags)
+2. git tag -a 0.0.X -m "Este es mi nuevo tag" 
+3. git push --tags 
+
+## Visualizar commit
+- git log --oneline --graph 
+
