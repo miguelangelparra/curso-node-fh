@@ -10,11 +10,11 @@ const {
 
 //COn Middleware de verificaicon de token
 app.get("/usuario", verificaToken, (req, res) => {
-  return res.json({
-    usuario: req.usuario,
-    nombre: req.usuario.nombre,
-    email: req.usuario.email,
-  });
+  // return res.json({
+  //   usuario: req.usuario,
+  //   nombre: req.usuario.nombre,
+  //   email: req.usuario.email,
+  // });
 
   let desde = req.query.desde || 0;
   desde = Number(desde);
@@ -84,7 +84,7 @@ app.put("/usuario/:id", [verificaToken, verificaAdmin_Role], (req, res) => {
           err,
         });
 
-      res.json({ metodo: "put usuario", usuario: usuarioDB });
+      res.json({ok:true, metodo: "put usuario", usuario: usuarioDB });
     }
   );
 });
