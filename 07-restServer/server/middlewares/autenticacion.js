@@ -45,4 +45,29 @@ let verificaAdmin_Role = (req, res, next) => {
   }
 };
 
-module.exports = { verificaToken, verificaAdmin_Role };
+
+//*************** */
+// Verificar Token para Img
+//*************** */
+//Para proteger las imagenes en directorios NO-publicos Se requiere la verificacion del token del usuario
+//Como son imagenes se tendrian problemas al momento de la visualizacion cuando el <img src"X"> intente buscar la ruta de la imagen
+//Por eso es necesario hacer un metodo aparte que tome el token desde la url por query string
+let verificaTokenImg = (req, res, next) => {
+
+  let token =req.query.token
+
+  jwt.verify(token, process.env.SEED, (err, decoded) => {
+    if (err) {
+      res.status(401).json({
+        ok: false,
+        err: {
+          message: "Token invalido",
+        },
+      });
+    }
+    //Decoded es el payload desencriptado. Se puede agregar al req para que la informacion del usuario esté disponible en la peticion
+    req.usuario = decoded.usuario;
+    next();
+  });
+}
+module.exports = { verificaToken, verificaAdmin_Role,verificaTokenImg };

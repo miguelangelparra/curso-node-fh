@@ -6,5 +6,7 @@ app.use(require("./login.routes"));
 app.use(require("./usuarios.routes.js"));
 app.use(require("./categorias.routes"));
 app.use(require("./productos.routes"));
+app.use(require("./upload.routes"));
+app.use(require("./imagenes.routes"))
 
 module.exports = app;
