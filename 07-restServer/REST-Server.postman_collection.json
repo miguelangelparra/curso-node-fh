@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "7efc23ac-70d4-44cf-95f4-f0fc0a6ae412",
-		"name": "REST-Server",
+		"name": "REST-Server-CafeUdemy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -105,17 +105,9 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "d1d7e594-5a8b-47b2-aa57-d4ef020aaf58",
+						"id": "d9e4ca45-58e9-45d7-98f8-04c6f9abc4ba",
 						"exec": [
-							"console.log(\"Hola Mundo0\")\r",
 							"\r",
-							"let resp = pm.response.json()\r",
-							"if (resp.ok) {\r",
-							"    let token = resp.token\r",
-							"    pm.environment.set(\"token\", token)\r",
-							"} else {\r",
-							"    console.log(\"No se actualizo el token \")\r",
-							"}\r",
 							""
 						],
 						"type": "text/javascript"
@@ -124,7 +116,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "91952bfb-6845-4f28-83f3-2a0048a1cd79",
+						"id": "eda89ec2-46c1-4c61-870d-818f2fef4899",
 						"exec": [
 							"console.log(\"Hola Mundo\")"
 						],
@@ -140,7 +132,7 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7InJvbGUiOiJBRE1JTl9ST0xFIiwiZXN0YWRvIjp0cnVlLCJnb29nbGUiOmZhbHNlLCJfaWQiOiI1ZjFlMDVkYzI3NWVhNjM4ZmMwYzE4ZDEiLCJub21icmUiOiJ0ZXN0MDEiLCJlbWFpbCI6InRlc3QwMUBtaWd1ZWxhbmdlbC5jb20iLCJfX3YiOjB9LCJpYXQiOjE1OTU4OTk0NzEsImV4cCI6MTU5NTk4NTg3MX0.zPkexBtnBfJwnjf1cU7hTbnaiTnrPljyts4_93Otc0Q",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
@@ -275,6 +267,546 @@
 					],
 					"path": [
 						"google"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categoria: Crear Categoria",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "Ensaladas",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "Aqui van las ensaladas",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/categoria",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categoria"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "producto: Crear producto",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "bebida caliente",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "Esto es una bebida caliente",
+							"type": "text"
+						},
+						{
+							"key": "precioUni",
+							"value": "1022",
+							"type": "text"
+						},
+						{
+							"key": "categoria",
+							"value": "5f1e05dc275ea638fc0c18d1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/productos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categoria: obtener todas las Categorias",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/categoria",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categoria"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos: obtener todos los productos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/productos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos: obtener busqueda de los productos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/productos/busqueda/bebida",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"productos",
+						"busqueda",
+						"bebida"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categoria: obtener Categoria por id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{url}}/categoria/5f272287e221e7582c42354e",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categoria",
+						"5f272287e221e7582c42354e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos: obtener Producto por id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{url}}/productos/5f290540742c1810e870aa64",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"productos",
+						"5f290540742c1810e870aa64"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categoria: Actualizar Categoria",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "Bebida Fria",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "Esto es una bebida Fria",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/categoria/5f26f91c26eba20fbc1e5a30",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categoria",
+						"5f26f91c26eba20fbc1e5a30"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos: Actualizar productos",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "Ensalada",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "Ensalada Cesar Grande",
+							"type": "text"
+						},
+						{
+							"key": "precioUni",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "categoria",
+							"value": "5f2904d18069f3377cb133e3",
+							"type": "text"
+						},
+						{
+							"key": "disponible",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/productos/5f290540742c1810e870aa64",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"productos",
+						"5f290540742c1810e870aa64"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload: imagen Usuario",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "archivo",
+							"type": "file",
+							"src": "/C:/Users/m.parra.davila/Pictures/159115277793.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/upload/usuarios/5f1e05e9275ea638fc0c18d2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"upload",
+						"usuarios",
+						"5f1e05e9275ea638fc0c18d2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload: imagen Producto",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "archivo",
+							"type": "file",
+							"src": "/C:/Users/m.parra.davila/Pictures/159115277793.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/upload/productos/5f290540742c1810e870aa64",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"upload",
+						"productos",
+						"5f290540742c1810e870aa64"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categoria: Borrar Categoria",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "Bebida Fria",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "Esto es una bebida Fria",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/categoria/5f26f91c26eba20fbc1e5a30",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categoria",
+						"5f26f91c26eba20fbc1e5a30"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "producto: Borrar Producto",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{url}}/productos/5f290540742c1810e870aa64",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"productos",
+						"5f290540742c1810e870aa64"
+					]
+				},
+				"description": "El servicio no borra, solo cambia el disponible a false"
+			},
+			"response": []
+		},
+		{
+			"name": "imagen:Obtener Imagen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/imagen/usuarios/5f1e05e9275ea638fc0c18d2-465.png?token={{token}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"imagen",
+						"usuarios",
+						"5f1e05e9275ea638fc0c18d2-465.png"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
 					]
 				}
 			},
