@@ -1,0 +1,2 @@
+https://www.muckibu.de/webpack-nodejs-express-fueled-typescript/
+https://github.com/wzr1337/node.express.webpack.starter

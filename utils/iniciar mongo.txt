@@ -1,0 +1,32 @@
+"C:\Program Files\MongoDB\Server\4.2\bin\mongo.exe"
+
+"C:\Program Files\MongoDB\Server\4.2\bin\mongod.exe" --dbpath="c:\data\db"
+
+3t 
+studio 3t
+mongo comunnity
+
+
+miguelangel.migpsi@gmail.com
+Alma.1234
+
+Cluster0
+migpsi
+HB7ovCCiJlYQgRG2
+MongoDB URL
+	
+
+PARA el ARchivo Config.js
+
+//ENTORNO
+process.env.NODE_ENV = process.env.NODE_ENV || "dev";
+
+//URLDB
+let urlDB;
+if (process.env.NODE_ENV === "dev") {
+  urlDB = "mongodb://localhost:27017/cafe";
+} else {
+  urlDB =
+    "mongodb+srv://migpsi:HB7ovCCiJlYQgRG2@cluster0.zosqz.mongodb.net/cafe";
+}
+process.env.URLDB = urlDB;

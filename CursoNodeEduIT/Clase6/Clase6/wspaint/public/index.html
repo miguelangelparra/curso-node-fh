@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wsPaint NodeJS</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body class="subbg-color">
+
+    <div class="container-fluid">
+        <h1><span class="mensaje-cyan">Websocket</span><span class="mensaje-yellow">Paint</span></h1>
+        <div>Address <span id="address"></span></div>
+        <div id="information">Welcome!</div>
+        <div class="row my-3">
+            <div class="col-3">
+                <h4>
+                    Negro
+                    <input id="blackCheck" type="radio">
+                </h4>
+            </div>
+            <div class="col-3">
+                <h4>
+                    Azul
+                    <input id="blueCheck" type="radio">
+                </h4>
+            </div>
+            <div class="col-3">
+                <h4>
+                    Rojo
+                    <input id="redCheck" type="radio">
+                </h4>
+            </div>
+            <div class="col-3">
+                <h4>
+                    Verde
+                    <input id="greenCheck" type="radio">
+                </h4>
+            </div>
+        </div>
+        <div class="my-3">
+            <canvas class="canvas-color" id="playingfield" onmousedown="onMouseDown(event)"
+                onmousemove="onMouseMove(event)" onmouseout="onMouseLeave(event)" onmouseup="onMouseUp(event)"
+                width="1280" height="768"></canvas>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

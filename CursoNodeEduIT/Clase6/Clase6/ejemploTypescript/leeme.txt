@@ -1,0 +1,10 @@
+LINKS:
+https://www.typescriptlang.org/
+https://www.typescriptlang.org/docs/handbook/intro.html
+
+
+INSTALACIÓN:
+npm i -D typescript
+
+EJECUCIÓN:
+.\node_modules\.bin\tsc index.ts.ts -w --noEmitOnError

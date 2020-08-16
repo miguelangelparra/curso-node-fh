@@ -1,0 +1,16 @@
+Entorno de desarrollo de node - Express
+
+node
+express
+dotenv
+nodemon
+cross-env 
+
+
+Email con html-pdf
+utilizando buffer 
+y base 64 
+
+nodemailer
+
+https://nodemailer.com/message/attachments/

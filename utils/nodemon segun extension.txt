@@ -1,0 +1,3 @@
+nodemon para que solo este pendiente de algunos cambios segun extension
+
+nodemon server/server -e js,html

@@ -1,0 +1,38 @@
+NodeJs es una plataforma de desarrollo. 
+
+Revisar modulo de cluster para distribuir carga de procesador
+
+Deno es otra plataforma 	
+
+Libreria "moment" para trabajar con fecha
+
+cmder Terminal increible
+
+code abre el visualstudio
+code index.js abre el archivo
+
+mkdir crea carpeta
+touch index.js crea archivo
+
+crear proyecto node:
+node init 
+node init -y
+
+Ejecuciones 
+node index.js
+node index
+node . 
+npm run start
+nodemon server.js
+
+PASS Plataforma como servicio - Donde se puede correr Node
+
+SASS Software como servicio
+
+Para subir a la nube y correr Node y SQLLITE:
+Glitch
+
+Terminal de multiples divisiones
+https://cmder.net/
+
+https://drive.google.com/drive/folders/1TLFgoiZYt3Dl79qfCq00UHImPCkrvlr-?usp=sharing

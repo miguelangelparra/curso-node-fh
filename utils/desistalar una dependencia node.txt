@@ -1,0 +1,3 @@
+ desinstalar una dependencia 
+
+npm uninstall [nombre de la dependencia]

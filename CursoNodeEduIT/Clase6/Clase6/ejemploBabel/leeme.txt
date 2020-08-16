@@ -1,0 +1,13 @@
+﻿LINKS:
+https://babeljs.io/
+
+
+INSTALACIÓN:
+npm i -D babel-cli babel-preset-env
+touch .babelrc con ->
+{
+    "presets": ["env"]
+}
+
+EJECUCIÓN:
+.\node_modules\.bin\babel index.es6.js -o index.js5.js -w

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">    
+</head>
+<body>
+    
+    <div class="container mt-3">
+        <div class="jumbotron">
+            <h1 style="color:purple;">Ingrese sus datos</h1>
+            <br>
+
+            <form action="/datos" method="post" autocomplete="off">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="edad">Edad</label>
+                    <input type="text" id="edad" name="edad" class="form-control">
+                </div>
+            
+                <button class="btn btn-success my-3">Enviar</button>                
+            </form>
+
+        </div>
+    </div>
+
+
+</body>
+</html>

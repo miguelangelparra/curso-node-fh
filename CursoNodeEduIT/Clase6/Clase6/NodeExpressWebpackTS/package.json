@@ -1,0 +1,25 @@
+{
+  "name": "node.express.starter",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:prod": "webpack -w --config webpack.config.prod.js",
+    "build:dev": "webpack -w --config webpack.config.js",
+    "watch": "webpack-watch-server --config webpack.config.js"
+  },
+  "author": "Dr. Patrick Bartsch",
+  "license": "MIT",
+  "devDependencies": {
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "webpack": "^3.10.0",
+    "webpack-watch-server": "^1.2.1"
+  },
+  "dependencies": {
+    "@types/express": "^4.11.0",
+    "express": "^4.16.2",
+    "ts-loader": "^3.2.0",
+    "typescript": "^2.6.2"
+  }
+}

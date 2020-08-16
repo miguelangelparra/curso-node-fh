@@ -1,0 +1,13 @@
+<h2>Películas</h2>
+<hr>
+<hr>
+{{#each lista}}
+
+	{{#if titulo.length }}
+		Nombre: {{titulo}}<br>
+		Género: {{genero}}<br>
+		Año:    {{year}}
+		<hr>
+	{{/if}}
+
+{{/each}}

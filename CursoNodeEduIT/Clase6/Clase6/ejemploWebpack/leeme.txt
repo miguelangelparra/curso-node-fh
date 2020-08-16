@@ -1,0 +1,9 @@
+LINKS:
+https://webpack.js.org/
+
+
+INSTALACIÓN:
+npm i -D webpack webpack-cli
+
+EJECUCIÓN:
+.\node_modules\.bin\webpack index.js index.js5.js index.ts.js -o index.min.js --mode "production" -w

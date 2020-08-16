@@ -1,0 +1,14 @@
+ERRORES HTTP
+
+403 Forbidden prohibido
+404 Not Found
+416 Fuera de RAngo
+417 Expectation Failed
+500 Internal Server Error
+A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.[63]
+501 Not Implemented
+The server either does not recognize the request method, or it lacks the ability to fulfil the request. Usually this implies future availability (e.g., a new feature of a web-service API).[64]
+502 Bad Gateway
+The server was acting as a gateway or proxy and received an invalid response from the upstream server.[65]
+503 Service Unavailable
+The server cannot handle the request (because it is overloaded or down for maintenance). Generally, this is a temporary state.[66]
