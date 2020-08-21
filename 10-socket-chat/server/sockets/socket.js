@@ -24,12 +24,20 @@ io.on("connection", (client) => {
     //El join hace que se conecte a una sala especifica 
     client.join(usuario.sala);
     //Agrega a  la persona a la lista de conectados y retorna la lista de los conectados
-    let personas = usuarios.agregarPersona(client.id, usuario.nombre, usuario.sala);
+    usuarios.agregarPersona(client.id, usuario.nombre, usuario.sala);
 
-    //Emite un mensaje a todos para actualizar la lista de personas conectadas
-    client.broadcast.emit("listaDePersonas", usuarios.getPersonas());
+    // //Emite un mensaje a todos para actualizar la lista de personas conectadas
+    // client.broadcast.emit("listaDePersonas", usuarios.getPersonas());
+    // Los clientes se conectan por default a una sala global, para emitir solo a una sala se debe asociar 
+    //El cliente a dicha sala, el nombre de la sala es arbitrario y el envio de los mensajes sigue la misma logica 
+    //Que los mensajes privados cliente-cliente 
+
+    // //Emite un mensaje a todos para actualizar la lista de personas conectadas
+    //Con el to(misala) Se envia solo a aquellos que estan asociados a una sala
+    client.broadcast.to(usuario.sala).emit("listaDePersonas", usuarios.getPersonasPorSala(usuario.sala));
+
     //Devuelve la lista de usuarios conectados
-    return callback(personas);
+    return callback(usuarios.getPersonasPorSala(usuario.sala));
   });
 
 client.on("enviarMensaje",(data)=>{
@@ -37,7 +45,7 @@ client.on("enviarMensaje",(data)=>{
   let persona = usuarios.getPersona(client.id)
 //Crea el mensaje y lo emite a todos
   let mensaje = crearMensaje(persona.nombre,data.mensaje)
-  client.broadcast.emit("crearNotificacion",mensaje)
+  client.broadcast.to(persona.sala).emit("crearNotificacion",mensaje)
 })
 
 client.on("mensajePrivado",data=>{
@@ -53,8 +61,8 @@ client.broadcast.to(data.idpara).emit("crearNotificacion",mensaje)
   client.on("disconnect", () => {
     let personaBorrada = usuarios.deletePersona(client.id);
     //Notifica a todos los usuarios que el cliente se desconectó
-    client.broadcast.emit("crearNotificacion", crearMensaje("Administrador:",`${personaBorrada.nombre} abandonó el chat`));
+    client.broadcast.to(personaBorrada.sala).emit("crearNotificacion", crearMensaje("Administrador:",`${personaBorrada.nombre} abandonó el chat`));
     //Emite un mensaje a todos para actualizar la lista de personas conectadas
-    client.broadcast.emit("listaDePersonas", usuarios.getPersonas());
+    client.broadcast.to(personaBorrada.sala).emit("listaDePersonas", usuarios.getPersonasPorSala(personaBorrada.sala));
   });
 });
