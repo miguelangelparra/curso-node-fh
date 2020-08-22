@@ -1,55 +1,65 @@
 var socket = io();
 
 var params = new URLSearchParams(window.location.search);
-var usuario = {
-  nombre: params.get("nombre"),
-  sala: params.get("sala"),
-};
 
-//Verifica que se haya dado nombre y sala
-if (!params.has("nombre") || !params.has("sala")) {
-  //En caso contrario redirecciona al inicio
-  window.location = "index.html";
-  throw new Error("El nombre y la sala son necesarios");
+if (!params.has('nombre') || !params.has('sala')) {
+    window.location = 'index.html';
+    throw new Error('El nombre y sala son necesarios');
 }
 
-socket.on("connect", function () {
-  console.log("Conectado al servidor");
+var usuario = {
+    nombre: params.get('nombre'),
+    sala: params.get('sala')
+};
 
-  socket.emit("entrarChat", usuario, function (resp) {
-    console.log("Usuarios Conectados:", resp);
-  });
+
+
+socket.on('connect', function() {
+    console.log('Conectado al servidor');
+
+    socket.emit('entrarChat', usuario, function(resp) {
+        console.log('Usuarios conectados', resp);
+        renderizarUsuarios(resp)
+    });
+
 });
 
 // escuchar
-socket.on("disconnect", function () {
-  console.log("Perdimos conexión con el servidor");
+socket.on('disconnect', function() {
+
+    console.log('Perdimos conexión con el servidor');
+
 });
 
+
 // Enviar información
-// socket.emit('enviarMensaje', {
+// socket.emit('crearMensaje', {
+//     nombre: 'Fernando',
 //     mensaje: 'Hola Mundo'
 // }, function(resp) {
 //     console.log('respuesta server: ', resp);
 // });
 
-// Escucha el evento que dispara notificaciones de mensaje
-socket.on("crearNotificacion", function (notificacion) {
-  console.log(
-    "Servidor:",
-    notificacion.nombre,
-    notificacion.mensaje,
-    notificacion.fecha
-  );
+// Escuchar información
+socket.on('crearMensaje', function(mensaje) {
+    console.log('Servidor:', mensaje);
+    //Funcion para pintar mensaje
+    renderizarMensajes(mensaje,false)
+//Funcion para que se acomode el scroll
+    scrollBottom()
+
 });
 
-//Escucha el evento que se dispara cuando alguien entra o sale del chat
-socket.on("listaDePersonas", function (personas) {
-  console.log(personas);
+// Escuchar cambios de usuarios
+// cuando un usuario entra o sale del chat
+socket.on('listaPersonas', function(personas) {
+    console.log(personas);
+    renderizarUsuarios(personas)
+
 });
 
-//Mensajes privados
+// Mensajes privados
+socket.on('mensajePrivado', function(mensaje) {
+    console.log('Mensaje Privado:', mensaje);
 
-socket.on("mensajePrivado", function (mensaje) {
-  console.log("Mensaje Privado: ", mensaje);
 });
