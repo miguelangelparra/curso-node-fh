@@ -7,3 +7,4 @@
 07-restServer/node_modules/*
 08-socket-basico/node_modules/*
 09-socket-colas/node_modules/*
+10-socket-chat/node_modules/*
