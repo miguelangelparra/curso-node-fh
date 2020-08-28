@@ -1,0 +1,65 @@
+nodedb
+node_user
+123456
+
+
+
+extension util para ver las query de forma amena
+mysql-inline-decorator
+
+
+documentacion facil uso de mysql:
+https://www.w3schools.com/sql/
+
+documentacion de typescript
+https://www.typescriptlang.org/docs/
+
+
+documentacion mysql npm 
+https://github.com/mysqljs/mysql
+
+
+
+un repositorio de Joalbert Gonzales, que hizo la conexión el backend con MariaDB y TypeScript y nos compartió su código por si lo llegan a necesitar:
+
+https://github.com/joalbertg/node-Express_service_typescript_mariadb
+
+import mariadb from 'mariadb';
+
+export default class MariaDB {
+  private static _instance: MariaDB;
+
+  pool: mariadb.Pool;
+
+  constructor() {
+    console.log('Init class MariaDB');
+    this.pool = mariadb.createPool({
+      host: 'mariadb',
+      database: 'mydb',
+      user: 'root',
+      password: '123456',
+      connectionLimit: 5
+    });
+    this.dbConnect();
+  }
+
+  public static get instance() {
+    return this._instance || (this._instance = new this());
+  }
+
+  static async executeQuery(query: string) {
+    try {
+      return await this.instance.pool.query(query);
+    } catch(error) { throw error }
+  }
+
+  private dbConnect() {
+    try {
+      this.pool.getConnection();
+      console.log('Online database');
+    } catch(error) {
+      console.error(error);
+      return;
+    }
+  }
+}
