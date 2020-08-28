@@ -1,0 +1,23 @@
+html css support 
+javascript (es6) code snippets
+js-css-html-formatter (Revisar si conviene )
+terminal 
+
+Typescript Importer 
+Este permite las autoimportaciones de los archivos de javascript 
+
+mysql-inline-
+
+
+
+instalar : 
+visual studio code
+git para confirmar  git --version 
+nodejs node --version
+
+
+
+en git bash 
+git config --global user.name "Minombre"
+git config --global user.email minombre@micorreo.com"
+git config --list 

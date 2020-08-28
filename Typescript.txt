@@ -1,0 +1,41 @@
+Instalar de forma global
+npm install -g typescript
+
+Verificar version 
+tsc --version
+
+Crear archivo inicial dentro de src
+index.ts
+
+Inicializar configuracion de tsc 
+tsc --init 
+
+En el archivo de configuracion: 
+target: "Es el codigo del standart al cual sera transpilado"
+module: "commonjs es el importador por default de los paquetes de node"
+outDir: "dist" es la carpeta destino del codigo compilado 
+
+El comando "tsc":
+Compila el codigo a JS y lo deposita en la carpeta destino "dist" 
+
+Correr lo compilado: 
+nodemon dist/index
+
+Tipado de typescript
+$ npm install @types/express --save
+
+CopyFiles
+npm install copyfiles -g
+Esta libreria ayuda a copiar en la carpeta de distribucion los archivos estaticos. Es importante recordar que el compilador de typescript no copia a las carpetas de distribucion a los archivos estaticos 
+
+ "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "html": "copyfiles --up 1 src/public/*html dist",
+    "build": "tsc && npm run html"
+  },
+
+
+
+
+
+
